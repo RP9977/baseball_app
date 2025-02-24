@@ -28,11 +28,13 @@ def generar_analisis(jugador):
     Proporciona un breve análisis destacando fortalezas y oportunidades de mejora.
     """
     
-    respuesta = openai.client.chat.completions.create(
-        model="gpt-4",
-        messages=[{"role": "system", "content": "Eres un analista de béisbol experto."},
-                    {"role": "user", "content": prompt}]
-    )
+    respuesta = openai.ChatCompletion.create(
+    model="gpt-4",
+    messages=[
+        {"role": "system", "content": "Eres un analista de béisbol experto."},
+        {"role": "user", "content": prompt}
+    ]
+)
     
     return respuesta["choices"][0]["message"]["content"]
 
