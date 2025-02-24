@@ -1,8 +1,8 @@
 import streamlit as st
-import openai
+import os
 from openai import OpenAI
 
-client = OpenAI()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 datos_jugadores = {
     "Shohei Ohtani": {"AVG": 0.304, "HR": 44, "OBP": 0.412, "ERA": 3.14},
