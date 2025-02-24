@@ -39,7 +39,11 @@ def generar_analisis(jugador):
         ]
     )
     
-    return respuesta["choices"][0]["message"]["content"]
+    if respuesta and respuesta.choices:
+        return respuesta.choices[0].message.content
+    else:
+        return "Error: No se pudo generar el análisis. Verifica la API Key o la estructura de la respuesta."
+
 
 st.title("Club House - Análisis Inteligente de Jugadores")
 st.write("Ingresa el nombre de un jugador y obtén un análisis de su rendimiento basado en estadísticas.")
