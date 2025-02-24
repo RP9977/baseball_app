@@ -1,5 +1,8 @@
 import streamlit as st
 import openai
+from openai import OpenAI
+
+client = OpenAI()
 
 datos_jugadores = {
     "Shohei Ohtani": {"AVG": 0.304, "HR": 44, "OBP": 0.412, "ERA": 3.14},
@@ -28,13 +31,13 @@ def generar_analisis(jugador):
     Proporciona un breve análisis destacando fortalezas y oportunidades de mejora.
     """
     
-    respuesta = openai.ChatCompletion.create(
+    respuesta = client.chat.completions.create(
     model="gpt-4",
     messages=[
         {"role": "system", "content": "Eres un analista de béisbol experto."},
         {"role": "user", "content": prompt}
-    ]
-)
+        ]
+    )
     
     return respuesta["choices"][0]["message"]["content"]
 
